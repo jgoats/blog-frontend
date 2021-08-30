@@ -1,8 +1,6 @@
 import React from "react";
 import ReactDom from "react-dom";
-import App from "./components/app/main.js";
+import App from "./components/app/app.js";
 
 
-
-const container = document.getElementsByClassName("app-container")[0];
-ReactDom.hydrate(<App />, container);
+ReactDom.render(<App />, document.getElementById("root"));
