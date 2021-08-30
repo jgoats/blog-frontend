@@ -1,7 +1,6 @@
 import React from "react";
-import Nav from "../nav/nav.js";
 
-export default class Topics extends React.Component {
+class App extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -11,9 +10,10 @@ export default class Topics extends React.Component {
     render() {
         return (
             <div>
-                <Nav />
-                <div>Topics</div>
+                Hello from App
             </div>
         )
     }
 }
+
+export default App;
