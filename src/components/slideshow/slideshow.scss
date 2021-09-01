@@ -1,0 +1,100 @@
+.slideshow-container {
+    padding-top : 100px;
+    width : 70vw;
+    position : relative;
+    left : 50%;
+    transform : translateX(-50%);
+    display : flex;
+    height : 300px;
+    align-items : center;
+    flex-direction: row;
+}
+.slide {
+    display : flex;
+    align-items : center;
+    justify-content: center;
+    flex-direction: row;
+    position : absolute;
+    width : 70vw;
+    height : 300px;
+    transform : translateX(-50%);
+    box-shadow : 0px 0px 3px black;
+    background-color : white;
+    left : 50%;
+}
+#sectionOne {
+    margin-top : calc(80px);
+    padding-top : 30px;
+}
+.slide-description {
+    color : black;
+    font-size : 20px;
+    padding : 5px;
+    text-align : center;
+    width : 35vw;
+}
+.slide-image {
+    min-width : 250px;
+    width : 35vw;
+    height : 300px;
+}
+.slideshow-controls {
+    width : 150px;
+    display : flex;
+    align-items : center;
+    justify-content:space-evenly;
+    flex-direction : row;
+    left : 50%;
+    transform : translateX(-50%);
+    position : relative;
+    height : 40px;
+}
+.active {
+    opacity : 0.2;
+    animation : active 0.5s ease-out;
+    width : 50vw;
+    height : 300px;
+}
+@keyframes active {
+    from {
+        width : 50vw;
+        height : 300px;
+        opacity : 0.2
+    }
+    to {
+        width : 50vw;
+        height : 300px;
+        opacity : 1;
+    }
+}
+@keyframes one {
+    from {
+        left : 80%;
+    }
+    to {
+        left : 20%;
+    }
+}
+@keyframes two {
+    from {
+        left : 20%;
+    }
+    to {
+        left : 50%;
+    }
+}
+@keyframes three {
+    from {
+        left : 50%;
+    }
+    to {
+        left : 80%;
+    }
+}
+.circle {
+    width : 15px;
+    height : 15px;
+    background-color : white;
+    box-shadow : 0px 0px 4px black;
+    border-radius : 50%;
+}

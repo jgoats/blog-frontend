@@ -11,6 +11,7 @@ module.exports = {
     devServer: {
         port: 3000,
         watchContentBase: true,
+        historyApiFallback: true
     },
     // Rules of how webpack will take our files, complie & bundle them for the browser 
     module: {

@@ -1,4 +1,7 @@
 import React from "react";
+import { Route, withRouter } from "react-router-dom";
+import AdminLogin from "../adminlogin/adminlogin";
+import LandingPage from "../landingpage/landingpage";
 
 class App extends React.Component {
     constructor() {
@@ -9,11 +12,12 @@ class App extends React.Component {
     }
     render() {
         return (
-            <div>
-                Hello from App
-            </div>
+            <>
+                <Route path="/admin" render={props => <AdminLogin />} />
+                <Route path="/" exact render={props => <LandingPage />} />
+            </>
         )
     }
 }
 
-export default App;
+export default withRouter(App);
