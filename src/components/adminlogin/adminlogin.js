@@ -1,10 +1,12 @@
 import React from "react";
 import Nav from "../nav/nav";
+import "react-router-dom";
+import { withRouter } from "react-router-dom";
 import "./adminlogin.scss";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
-export default class AdminLogin extends React.Component {
+class AdminLogin extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -63,24 +65,12 @@ export default class AdminLogin extends React.Component {
             withCredentials: true,
             data: data
         }).then((user) => {
-            console.log(user);
-            /* if (user.data.cookie) {
-                 axios({
-                     method: "get",
-                     url: "http://localhost:4000/dashboard",
-                     headers: {
-                         "Content-Type": "application/json"
-                     }
-                 }).then((result) => {
-                     console.log(result);
-                 }).catch((err) => {
-                     console.log(err)
-                 })
- 
-             }
-             else {
-                 console.log("incorrect data entered")
-             }*/
+            if (user.data.signedIn) {
+                this.props.history.push("/dashboard");
+            }
+            else {
+                console.log("user not signed in");
+            }
         }).catch((err) => {
             if (err) {
                 console.log(err);
@@ -106,3 +96,5 @@ export default class AdminLogin extends React.Component {
         );
     }
 }
+
+export default withRouter(AdminLogin);
