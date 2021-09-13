@@ -12,13 +12,20 @@ class Dashboard extends Component {
             description: "",
             content: "",
             photos: [],
-            result: null
+            result: null,
+            width: null
         }
         this.updateTitle = this.updateTitle.bind(this);
         this.updateDescription = this.updateDescription.bind(this);
         this.updateContent = this.updateContent.bind(this);
         this.submit = this.submit.bind(this);
         this.uploadHandler = this.uploadHandler.bind(this);
+        this.handleWidth = this.handleWidth.bind(this);
+    }
+    handleWidth() {
+        this.setState({
+            width: "400px"
+        })
     }
     uploadHandler(e) {
         const data = new FormData();
@@ -26,7 +33,18 @@ class Dashboard extends Component {
 
         axios.post('http://localhost:4000/upload', data)
             .then((res) => {
-                document.getElementById("content").value += `<img src="http://localhost:4000/images/${res.data.filename}" />`;
+                if (this.state.width) {
+                    this.setState({
+                        content: this.state.content + "" + `<img style='width:${this.state.width};' src="http://localhost:4000/images/${res.data.filename}" />`
+                    })
+                }
+                else {
+                    this.setState({
+                        content: this.state.content + "" + `<img src="http://localhost:4000/images/${res.data.filename}" />`
+                    })
+
+                }
+
             });
     }
     submit(e) {
@@ -86,12 +104,6 @@ class Dashboard extends Component {
         })
     }
     render() {
-        if (this.state.result) {
-            let obj = JSON.parse(this.state.result.config.data);
-            console.log(obj);
-            let image = "<img src='../images/screenshot.png'/>";
-            document.getElementById("test").innerHTML = image;
-        }
         return (
             <div className="dashboard-container">
                 <div className="dashboard-form-container">
@@ -101,8 +113,7 @@ class Dashboard extends Component {
                         <label className="dashboard-form-label">content</label><textarea id="content" onChange={(e) => this.updateContent(e)} className="dashboard-form-input" value={this.state.content} type="text" />
                         <input type="file" name="file" onChange={(e) => this.uploadHandler(e)} />
                     </form>
-                    <div id="test"></div>
-                    {console.log(this.state.photos)}
+                    <button onClick={this.handleWidth}>set width to 400px</button>
                     <button onClick={(e) => this.submit(e)} className="dashboard-submit">Submit</button>
                 </div>
             </div>

@@ -25,7 +25,7 @@ export default class LandingPage extends React.Component {
                 blogs: concated
             })
             for (let i = 0; i < result.data.blogs.length; i++) {
-                document.getElementById("content").innerHTML += result.data.blogs[i].content;
+                document.getElementsByClassName("screenshot")[i].innerHTML += result.data.blogs[i].screenshot;
             }
 
         }).catch((err) => {
@@ -34,22 +34,17 @@ export default class LandingPage extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div className="landingpage-background">
                 <Nav />
-                {this.state.blogs.map((item) =>
-                    <div className="blog-card" key={item._id}>
-                        <div>{item.title}</div>
-                        <div>{item.description}</div>
-                        <div id="content"></div>
-                        <div>{new Date(item.time).toLocaleDateString()}</div>
-                    </div>
-                )}
-                <div className="index-background">
-                    <h1 className="section-heading">Why I Made This Blog</h1>
-                    <h1 className="section-heading">Recent Posts</h1>
-                    <div className="blogcard-container">
-
-                    </div>
+                <div className="articles">
+                    {this.state.blogs.map((item) =>
+                        <div className="blog-card" key={item._id}>
+                            <div className="screenshot"></div>
+                            <div className="blog-title">{item.title}</div>
+                            <div className="blog-description">{item.description}</div>
+                            <div className="blog-timestamp">{new Date(item.time).toLocaleDateString()}</div>
+                        </div>
+                    )}
                 </div>
             </div>
         );
