@@ -13,7 +13,6 @@ class Dashboard extends Component {
             content: "",
             photos: [],
             result: null,
-            width: null
         }
         this.updateTitle = this.updateTitle.bind(this);
         this.updateDescription = this.updateDescription.bind(this);
@@ -33,18 +32,9 @@ class Dashboard extends Component {
 
         axios.post('http://localhost:4000/upload', data)
             .then((res) => {
-                if (this.state.width) {
-                    this.setState({
-                        content: this.state.content + "" + `<img style='width:${this.state.width};' src="http://localhost:4000/images/${res.data.filename}" />`
-                    })
-                }
-                else {
-                    this.setState({
-                        content: this.state.content + "" + `<img src="http://localhost:4000/images/${res.data.filename}" />`
-                    })
-
-                }
-
+                this.setState({
+                    content: this.state.content + "" + `<img style='width : 400px; display : block; margin-left : auto; margin-right : auto; margin-top : 20px; margin-bottom : 20px;' src="http://localhost:4000/images/${res.data.filename}" />`
+                })
             });
     }
     submit(e) {
@@ -113,7 +103,6 @@ class Dashboard extends Component {
                         <label className="dashboard-form-label">content</label><textarea id="content" onChange={(e) => this.updateContent(e)} className="dashboard-form-input" value={this.state.content} type="text" />
                         <input type="file" name="file" onChange={(e) => this.uploadHandler(e)} />
                     </form>
-                    <button onClick={this.handleWidth}>set width to 400px</button>
                     <button onClick={(e) => this.submit(e)} className="dashboard-submit">Submit</button>
                 </div>
             </div>
