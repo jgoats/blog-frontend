@@ -11,7 +11,9 @@ class AdminLogin extends React.Component {
         super();
         this.state = {
             username: "",
-            password: ""
+            password: "",
+            success: "",
+            error: ""
         }
         this.handleLogin = this.handleLogin.bind(this);
         this.handleUsername = this.handleUsername.bind(this);
@@ -66,10 +68,29 @@ class AdminLogin extends React.Component {
             data: data
         }).then((user) => {
             if (user.data.signedIn) {
+                this.setState({
+                    success: "Successfully logged in",
+                    username: "",
+                    password: ""
+                })
+                window.setTimeout(function () {
+                    this.setState({
+                        success: ""
+                    })
+                }.bind(this), 3000)
                 this.props.history.push("/dashboard");
             }
             else {
-                console.log("user not signed in");
+                this.setState({
+                    error: "incorrect credentials",
+                    username: "",
+                    password: ""
+                })
+                window.setTimeout(function () {
+                    this.setState({
+                        error: ""
+                    })
+                }.bind(this), 3000)
             }
         }).catch((err) => {
             if (err) {
@@ -79,7 +100,7 @@ class AdminLogin extends React.Component {
     }
     render() {
         return (
-            <>
+            <div className="admin-login-container">
                 <Nav />
                 <form method="POST" className="login-container">
                     <label className="login-label">Username</label>
@@ -89,10 +110,10 @@ class AdminLogin extends React.Component {
                     <input onChange={(e) => this.handlePassword(e)} className="login-input" type="password" name="password"
                         id="password" value={this.state.password} />
                     <input onClick={(e) => this.handleLogin(e)} className="login-button" type="button" value='login' />
+                    <div className="login-success">{this.state.success}</div>
+                    <div className="login-error">{this.state.error}</div>
                 </form>
-                <button onClick={this.deleteCookie}>delete cookie</button>
-                <button onClick={this.sendCookie}>Send Cookie</button>
-            </>
+            </div>
         );
     }
 }

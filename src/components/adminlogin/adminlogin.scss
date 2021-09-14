@@ -4,6 +4,7 @@ html {
     margin : 0px;
     padding : 0px;
     height : 100vh;
+    width : 100vw;
 }
 body {
     margin : 0px;
@@ -11,12 +12,24 @@ body {
     box-sizing : border-box;
     overflow-x : hidden;
 }
+.admin-login-container {
+    height : 100vh;
+    width : 100vw;
+    background-image : url(http://localhost:4000/images/loginbackground.png);
+    position : absolute;
+    background-size:130vw;
+    background-repeat : no-repeat;
+    background-position: center center;
+    background-color : black;
+    top : 0;
+    left : 0;
+}
 .login-container {
-    box-shadow : 0px 0px 6px black;
-    width : 50vw;
-    height : 400px;
+    padding : 10px;
+    width : 500px;
+    height : 50vh;
     position : relative;
-    top : calc(50px + 15vh);
+    top : calc(50px + 20vh);
     left : 50%;
     transform : translateX(-50%);
     display : flex;
@@ -24,19 +37,52 @@ body {
     justify-content: center;
     flex-direction : column;
     background-color : white;
+    border-radius : 15px;
+    box-shadow : 0px 0px 4px white;
 }
 .login-label {
-    margin : 20px;
     width : 100%;
     text-align : center;
     font-weight : bold;
     font-size : 20px;
 }
 .login-input {
+    font-family: 'Roboto', sans-serif;
     margin : 20px;
     width : 200px;
     text-align : center;
     font-weight : bold;
     font-size : 20px;
-    border : 1px solid black;
+    border-top : none;
+    border-left : none;
+    border-right : none;
+    border-bottom : 2px solid black;
+    opacity : 0.8;
+}
+.login-input:focus {
+    outline : none;
+}
+.login-button {
+    padding : 5px 8px 5px 8px;
+    color : white;
+    background-color:rgb(11, 109, 76);
+    border-radius : 3px;
+    border : none;
+    font-size : 18px;
+}
+.login-button:hover {
+    cursor: pointer;
+    transform : scale(1.1);
+    transition : 0.3s;
+}
+.login-success {
+    color : green;
+    margin-top : 10px;
+    font-size : 18px;
+    font-weight : bold;
+}
+.login-error {
+    color : red;
+    font-size : 18px;
+    font-weight : bold;
 }
