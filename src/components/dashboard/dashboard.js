@@ -33,7 +33,7 @@ class Dashboard extends Component {
         axios.post('http://localhost:4000/upload', data)
             .then((res) => {
                 this.setState({
-                    content: this.state.content + "" + `<img style='width : 400px; display : block; margin-left : auto; margin-right : auto; margin-top : 20px; margin-bottom : 20px;' src="http://localhost:4000/images/${res.data.filename}" />`
+                    content: this.state.content + "" + `<img style='width : 600px; display : block; margin-left : auto; margin-right : auto; margin-top : 20px; margin-bottom : 20px;' src="http://localhost:4000/images/${res.data.filename}" />`
                 })
             });
     }

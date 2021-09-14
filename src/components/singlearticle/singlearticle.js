@@ -7,14 +7,15 @@ class SingleArticle extends Component {
         document.getElementsByClassName("article-content")[0].innerHTML = this.props.article.content
     }
     render() {
-        const { title, description, content, timestamp } = this.props.article
+        const { title, time } = this.props.article
         return (
-            <div>
-                <div onClick={this.props.clearBlog}><img src={Previous} /></div>
-                <div>{title}</div>
-                <div>{description}</div>
-                <div className="article-content"></div>
-                <div>{timestamp}</div>
+            <div className="article-main-container">
+                <div className="back-btn" onClick={this.props.clearBlog}><img src={Previous} /></div>
+                <div className="article-content-container">
+                    <div className="article-title">{title}</div>
+                    <div className="article-timestamp">Created: {new Date(time).toLocaleDateString()}</div>
+                    <div className="article-content"></div>
+                </div>
             </div>
         )
     }
