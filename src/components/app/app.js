@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, withRouter } from "react-router-dom";
+import { Route } from "react-router-dom";
 import AdminLogin from "../adminlogin/adminlogin";
 import Dashboard from "../dashboard/dashboard";
 import LandingPage from "../landingpage/landingpage";
@@ -20,4 +20,4 @@ function App(props) {
     )
 }
 
-export default withRouter(App);
+export default App;
