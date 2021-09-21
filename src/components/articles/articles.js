@@ -30,7 +30,7 @@ class Articles extends Component {
     componentDidMount() {
         axios({
             method: "get",
-            url: "http://localhost:4000/getblogs",
+            url: "https://blog-backend426.herokuapp.com/getblogs",
             headers: {
                 "Content-Type": "application/json"
             }

@@ -22,7 +22,7 @@ class AdminLogin extends React.Component {
         this.sendCookie = this.sendCookie.bind(this);
     }
     deleteCookie() {
-        axios.get("http://localhost:4000/deletecookie", { withCredentials: true })
+        axios.get("https://blog-backend426.herokuapp.com/deletecookie", { withCredentials: true })
             .then((result) => {
                 console.log(result.data);
             })
@@ -30,7 +30,7 @@ class AdminLogin extends React.Component {
     sendCookie() {
         axios({
             method: "get",
-            url: "http://localhost:4000/dashboard",
+            url: "https://blog-backend426.herokuapp.com/dashboard",
             headers: {
                 "Content-Type": "application/json"
             }
@@ -60,7 +60,7 @@ class AdminLogin extends React.Component {
         e.preventDefault();
         axios({
             method: "post",
-            url: "http://localhost:4000/login",
+            url: "https://blog-backend426.herokuapp.com/login",
             headers: {
                 "Content-Type": "application/json"
             },

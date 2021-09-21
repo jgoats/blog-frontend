@@ -24,7 +24,7 @@ class Dashboard extends Component {
         const data = new FormData();
         data.append('file', e.target.files[0]);
 
-        axios.post('http://localhost:4000/upload', data)
+        axios.post('https://blog-backend426.herokuapp.com/upload', data)
             .then((res) => {
                 this.setState({
                     content: this.state.content + "" + `<img style='width : 600px; display : block; margin-left : auto; margin-right : auto; margin-top : 20px; margin-bottom : 20px;' src="http://localhost:4000/images/${res.data.filename}" />`
@@ -35,7 +35,7 @@ class Dashboard extends Component {
         e.preventDefault();
         axios({
             method: "Post",
-            url: "http://localhost:4000/addblog",
+            url: "https://blog-backend426.herokuapp.com/addblog",
             headers: {
                 "Content-Type": "application/json"
             },
@@ -70,7 +70,7 @@ class Dashboard extends Component {
     componentDidMount() {
         axios({
             method: "get",
-            url: "http://localhost:4000/dashboard",
+            url: "https://blog-backend426.herokuapp.com/dashboard",
             headers: {
                 "Content-Type": "application/json"
             },

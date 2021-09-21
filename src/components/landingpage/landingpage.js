@@ -28,7 +28,7 @@ export default class LandingPage extends React.Component {
     componentDidMount() {
         axios({
             method: "get",
-            url: "http://localhost:4000/getblogs",
+            url: "https://blog-backend426.herokuapp.com/getblogs",
             headers: {
                 "Content-Type": "application/json"
             }
