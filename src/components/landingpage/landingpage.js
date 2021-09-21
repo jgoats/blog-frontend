@@ -56,7 +56,7 @@ export default class LandingPage extends React.Component {
                                     content: item.content,
                                     time: item.time,
                                     id: item._id,
-                                    screenshot: item.screenshot
+                                    screenshot: ScreenShot
                                 })} className="blog-card" key={item._id}>
                                     <div className="screenshot">
                                         <img className="blog-image" src={ScreenShot} /></div>
