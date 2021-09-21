@@ -3,14 +3,14 @@ import "./landingpage.scss";
 import Nav from "../nav/nav";
 import axios from "axios";
 import SingleArticle from "../singlearticle/singlearticle.js";
+import ScreenShot from "../../images/screenshot.png";
 
 export default class LandingPage extends React.Component {
     constructor() {
         super();
         this.state = {
             blogs: [],
-            singlePage: null,
-            images: []
+            singlePage: null
         }
         this.handleSinglePage = this.handleSinglePage.bind(this);
         this.clearBlog = this.clearBlog.bind(this);
@@ -59,7 +59,7 @@ export default class LandingPage extends React.Component {
                                     screenshot: item.screenshot
                                 })} className="blog-card" key={item._id}>
                                     <div className="screenshot">
-                                        <img className="blog-image" src={item.screenshot} /></div>
+                                        <img className="blog-image" src={ScreenShot} /></div>
                                     <div className="blog-title">{item.title}</div>
                                     <div className="blog-description">{item.description}</div>
                                     <div className="blog-timestamp">{new Date(item.time).toLocaleDateString()}</div>
