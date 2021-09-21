@@ -45,25 +45,27 @@ export default class LandingPage extends React.Component {
     render() {
         if (!this.state.singlePage) {
             return (
-                <div className="landingpage-background">
+                <div>
                     <Nav />
-                    <div className="articles">
-                        {this.state.blogs.map((item) =>
-                            <div onClick={() => this.handleSinglePage({
-                                title: item.title,
-                                description: item.description,
-                                content: item.content,
-                                time: item.time,
-                                id: item._id,
-                                screenshot: item.screenshot
-                            })} className="blog-card" key={item._id}>
-                                <div className="screenshot">
-                                    <img className="blog-image" src={item.screenshot} /></div>
-                                <div className="blog-title">{item.title}</div>
-                                <div className="blog-description">{item.description}</div>
-                                <div className="blog-timestamp">{new Date(item.time).toLocaleDateString()}</div>
-                            </div>
-                        )}
+                    <div className="landingpage-background">
+                        <div className="articles">
+                            {this.state.blogs.map((item) =>
+                                <div onClick={() => this.handleSinglePage({
+                                    title: item.title,
+                                    description: item.description,
+                                    content: item.content,
+                                    time: item.time,
+                                    id: item._id,
+                                    screenshot: item.screenshot
+                                })} className="blog-card" key={item._id}>
+                                    <div className="screenshot">
+                                        <img className="blog-image" src={item.screenshot} /></div>
+                                    <div className="blog-title">{item.title}</div>
+                                    <div className="blog-description">{item.description}</div>
+                                    <div className="blog-timestamp">{new Date(item.time).toLocaleDateString()}</div>
+                                </div>
+                            )}
+                        </div>
                     </div>
                 </div>
             );

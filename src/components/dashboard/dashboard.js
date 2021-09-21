@@ -19,12 +19,6 @@ class Dashboard extends Component {
         this.updateContent = this.updateContent.bind(this);
         this.submit = this.submit.bind(this);
         this.uploadHandler = this.uploadHandler.bind(this);
-        this.handleWidth = this.handleWidth.bind(this);
-    }
-    handleWidth() {
-        this.setState({
-            width: "400px"
-        })
     }
     uploadHandler(e) {
         const data = new FormData();
@@ -96,15 +90,17 @@ class Dashboard extends Component {
     render() {
         return (
             <div className="dashboard-container">
-                <div className="dashboard-form-container">
-                    <form>
-                        <label className="dashboard-form-label">title</label><input onChange={(e) => this.updateTitle(e)} className="dashboard-form-input" value={this.state.title} type="text" />
-                        <label className="dashboard-form-label">description</label><textarea onChange={(e) => this.updateDescription(e)} className="dashboard-form-input" value={this.state.description} type="text" />
-                        <label className="dashboard-form-label">content</label><textarea id="content" onChange={(e) => this.updateContent(e)} className="dashboard-form-input" value={this.state.content} type="text" />
-                        <input type="file" name="file" onChange={(e) => this.uploadHandler(e)} />
-                    </form>
-                    <button onClick={(e) => this.submit(e)} className="dashboard-submit">Submit</button>
+                <form className="dashboard-form-container">
+                    <div className="dashboard-form-item"><label className="dashboard-form-label">Title</label><input onChange={(e) => this.updateTitle(e)} className="dashboard-form-input" value={this.state.title} type="text" /></div>
+                    <div className="dashboard-form-item"><label className="dashboard-form-label">Description</label><textarea onChange={(e) => this.updateDescription(e)} className="dashboard-form-input" value={this.state.description} type="text" /></div>
+                    <div className="dashboard-form-item"><label className="dashboard-form-label">Content</label><textarea id="content" onChange={(e) => this.updateContent(e)} className="dashboard-form-input" value={this.state.content} type="text" /></div>
+                    <button className="dashboard-form-item" onClick={(e) => this.submit(e)} className="dashboard-submit">Submit</button>
+                </form>
+                <div className="import-image-container">
+                    <span className="import-image-prompt">Click To Upload</span>
+                    <input className="import-image" type="file" name="file" onChange={(e) => this.uploadHandler(e)} />
                 </div>
+
             </div>
         )
     }
