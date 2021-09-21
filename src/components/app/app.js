@@ -5,7 +5,7 @@ import Dashboard from "../dashboard/dashboard";
 import LandingPage from "../landingpage/landingpage";
 import Videos from "../videos/videos.js";
 import Articles from "../articles/articles.js";
-import { BrowserRouter as Router } from "react-router-dom";
+import { HashRouter as Router } from "react-router-dom";
 
 function App(props) {
 
