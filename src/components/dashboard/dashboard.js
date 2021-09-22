@@ -98,7 +98,7 @@ class Dashboard extends Component {
                 </form>
                 <div className="import-image-container">
                     <span className="import-image-prompt">Click To Upload</span>
-                    <input className="import-image" type="file" name="file" onChange={(e) => this.uploadHandler(e)} />
+                    <input enctype="multipart/form-data" className="import-image" type="file" name="file" onChange={(e) => this.uploadHandler(e)} />
                 </div>
 
             </div>
