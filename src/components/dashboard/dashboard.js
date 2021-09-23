@@ -78,9 +78,10 @@ class Dashboard extends Component {
                 user: "Justin Goats"
             }
         }).then((result) => {
-            if (!result.data.signedIn) {
-                this.props.history.push("/");
-            }
+            console.log(result);
+            /* if (!result.data.signedIn) {
+                 this.props.history.push("/");
+             }*/
         }).catch((err) => {
             if (err) {
                 console.log(err);
@@ -98,7 +99,7 @@ class Dashboard extends Component {
                 </form>
                 <div className="import-image-container">
                     <span className="import-image-prompt">Click To Upload</span>
-                    <input enctype="multipart/form-data" className="import-image" type="file" name="file" onChange={(e) => this.uploadHandler(e)} />
+                    <input className="import-image" type="file" name="file" onChange={(e) => this.uploadHandler(e)} />
                 </div>
 
             </div>
