@@ -28,17 +28,12 @@ class AdminLogin extends React.Component {
             })
     }
     sendCookie() {
-        axios({
-            method: "get",
-            url: "https://blog-backend426.herokuapp.com/dashboard",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }).then((result) => {
-            console.log(result);
-        }).catch((err) => {
-            console.log(err)
-        })
+        axios.get("https://blog-backend426.herokuapp.com/dashboard", { withCredentials: true })
+            .then((result) => {
+                console.log(result);
+            }).catch((err) => {
+                console.log(err)
+            })
 
     }
     handlePassword(e) {
@@ -53,19 +48,12 @@ class AdminLogin extends React.Component {
     }
     handleLogin(e) {
         const { username, password } = this.state;
-        let data = {
+        e.preventDefault();
+        axios.post("https://blog-backend426.herokuapp.com/login", {
+            withCredentials: true,
+            credentials: "include",
             username: username,
             password: password
-        }
-        e.preventDefault();
-        axios({
-            method: "post",
-            url: "https://blog-backend426.herokuapp.com/login",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            withCredentials: true,
-            data: data
         }).then((user) => {
             if (user.data.signedIn) {
                 this.setState({

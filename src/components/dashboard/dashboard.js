@@ -79,9 +79,9 @@ class Dashboard extends Component {
             }
         }).then((result) => {
             console.log(result);
-            /* if (!result.data.signedIn) {
-                 this.props.history.push("/");
-             }*/
+            if (!result.data.signedIn) {
+                this.props.history.push("/");
+            }
         }).catch((err) => {
             if (err) {
                 console.log(err);
