@@ -27,7 +27,7 @@ class Dashboard extends Component {
         axios.post('https://blog-backend426.herokuapp.com/upload', data)
             .then((res) => {
                 this.setState({
-                    content: this.state.content + "" + `<img style='width : 600px; display : block; margin-left : auto; margin-right : auto; margin-top : 20px; margin-bottom : 20px;' src="http://localhost:4000/images/${res.data.filename}" />`
+                    content: this.state.content + "" + `<img style='max-width : 600px; min-width:200px; display : block; margin-left : auto; margin-right : auto; margin-top : 20px; margin-bottom : 20px;' src="http://localhost:4000/images/${res.data.filename}" />`
                 })
             });
     }

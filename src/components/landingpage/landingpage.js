@@ -38,6 +38,7 @@ export default class LandingPage extends React.Component {
                 blogs: concated
             })
         }).catch((err) => {
+            alert(JSON.stringify(err));
             console.log(err);
         })
     }
