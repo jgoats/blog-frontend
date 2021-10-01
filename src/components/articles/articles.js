@@ -6,6 +6,7 @@ import axios from "axios";
 import Nav from "../nav/nav.js";
 axios.defaults.withCredentials = true;
 import SingleArticle from '../singlearticle/singlearticle';
+import Spinner from "../../images/spinner.svg";
 
 class Articles extends Component {
     constructor() {
@@ -13,9 +14,26 @@ class Articles extends Component {
         this.state = {
             articles: [],
             singlePage: null,
+            spinner: "",
+            defaultSpinner: "default-spinner"
         }
         this.handleSinglePage = this.handleSinglePage.bind(this);
         this.clearBlog = this.clearBlog.bind(this);
+        this.handleSpinner = this.handleSpinner.bind(this);
+    }
+    handleSpinner(turnOn) {
+        if (turnOn) {
+            this.setState({
+                spinner: Spinner,
+                defaultSpinner: "animate-spinner"
+            })
+        }
+        else {
+            this.setState({
+                spinner: "",
+                defaultSpinner: "default-spinner"
+            })
+        }
     }
     handleSinglePage(content) {
         this.setState({
@@ -28,6 +46,7 @@ class Articles extends Component {
         })
     }
     componentDidMount() {
+        this.handleSpinner(true);
         axios({
             method: "get",
             url: "https://blog-backend426.herokuapp.com/getblogs",
@@ -35,12 +54,14 @@ class Articles extends Component {
                 "Content-Type": "application/json"
             }
         }).then((result) => {
+            this.handleSpinner(false);
             let copy = [...this.state.articles];
             let concated = copy.concat(result.data.blogs);
             this.setState({
                 articles: concated
             })
         }).catch((err) => {
+            this.handleSpinner(false);
             console.log(err);
         })
     }
@@ -50,6 +71,7 @@ class Articles extends Component {
                 <div>
                     <Nav />
                     <div className="articles-container">
+                        <img class={this.state.defaultSpinner} src={this.state.spinner} />
                         {this.state.articles.map((item) =>
                             <div onClick={() => this.handleSinglePage({
                                 title: item.title,

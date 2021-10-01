@@ -3,16 +3,35 @@ import "./landingpage.scss";
 import Nav from "../nav/nav";
 import axios from "axios";
 import SingleArticle from "../singlearticle/singlearticle.js";
+import Spinner from "../../images/spinner.svg";
+import Background from "../../images/web-background-one.svg";
 
 export default class LandingPage extends React.Component {
     constructor() {
         super();
         this.state = {
             blogs: [],
-            singlePage: null
+            singlePage: null,
+            spinner: "",
+            defaultSpinner: "default-spinner"
         }
         this.handleSinglePage = this.handleSinglePage.bind(this);
         this.clearBlog = this.clearBlog.bind(this);
+        this.handleSpinner = this.handleSpinner.bind(this);
+    }
+    handleSpinner(turnOn) {
+        if (turnOn) {
+            this.setState({
+                spinner: Spinner,
+                defaultSpinner: "animate-spinner"
+            })
+        }
+        else {
+            this.setState({
+                spinner: "",
+                defaultSpinner: "default-spinner"
+            })
+        }
     }
     handleSinglePage(content) {
         this.setState({
@@ -25,6 +44,7 @@ export default class LandingPage extends React.Component {
         })
     }
     componentDidMount() {
+        this.handleSpinner(true);
         axios({
             method: "get",
             url: "https://blog-backend426.herokuapp.com/getblogs",
@@ -32,13 +52,14 @@ export default class LandingPage extends React.Component {
                 "Content-Type": "application/json"
             }
         }).then((result) => {
+            this.handleSpinner(false);
             let copy = [...this.state.blogs];
             let concated = copy.concat(result.data.blogs);
             this.setState({
                 blogs: concated
             })
         }).catch((err) => {
-            alert(JSON.stringify(err));
+            this.handleSpinner(false);
             console.log(err);
         })
     }
@@ -47,7 +68,8 @@ export default class LandingPage extends React.Component {
             return (
                 <div>
                     <Nav />
-                    <div className="landingpage-background">
+                    <div style={{ backgroundImage: `url("${Background}")` }} className="landingpage-background">
+                        <img className={this.state.defaultSpinner} src={this.state.spinner} />
                         <div className="articles">
                             {this.state.blogs.map((item) =>
                                 <div onClick={() => this.handleSinglePage({
